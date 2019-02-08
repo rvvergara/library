@@ -67,5 +67,15 @@ function getBookInfo() {
     read = document.getElementById("read").value;
   return [title, author, pages, read];
 }
+// Function for submit all info get from form
 
-document.getElementById("addBookForm").addEventListener("submit", e => addBookToLibrary(...getBookInfo()));
+function submitForm() {
+  addBookToLibrary(...getBookInfo());
+  document.getElementById("addBookForm").reset();
+  render(myLibrary);
+}
+
+document.getElementById("addBookForm").addEventListener("submit", e => {
+  e.preventDefault();
+  submitForm();
+});
