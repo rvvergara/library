@@ -44,7 +44,7 @@ function render(bookArr) {
   bookArr.forEach(book => {
     let bookLi = document.createElement("li"),
       status = book.read ? "already read" : "not yet read"
-    bookLi.innerText = `${book.title}, by ${book.author}, ${book.pages} pages, ${status}`;
+    bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, ${status}  <button>Toggle</button> <button>Delete</button>`;
     books.appendChild(bookLi);
   });
 }
