@@ -3,7 +3,8 @@ const myLibrary = [{
   title: "Rich Dad Poor Dad",
   author: "Robert Kiyosaki",
   pages: 300,
-  read: false
+  read: false,
+  id: 0,
 }]
 
 // Book Class
@@ -13,8 +14,15 @@ class Book {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    Book.count++;
+    this.id = Book.count;
+  }
+  static get COUNT() {
+    return Book.count;
   }
 }
+
+Book.count = 0;
 
 // Adding a new book to library
 function addBookToLibrary(title, author, pages, read) {
