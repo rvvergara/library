@@ -1,11 +1,5 @@
 // Library array
-const myLibrary = [{
-  title: "Rich Dad Poor Dad",
-  author: "Robert Kiyosaki",
-  pages: 300,
-  read: false,
-  id: 0,
-}]
+const myLibrary = []
 
 // Book Class
 class Book {
@@ -17,6 +11,9 @@ class Book {
     Book.count++;
     this.id = Book.count;
   }
+  toggleRead() {
+    this.read = !this.read;
+  }
   static get COUNT() {
     return Book.count;
   }
@@ -24,6 +21,7 @@ class Book {
 
 Book.count = 0;
 
+addBookToLibrary("Rich Dad Poor Dad", "Robert Kiyosaki", 300, false);
 // Adding a new book to library
 function addBookToLibrary(title, author, pages, read) {
   // 1. Instantiate a new book
@@ -63,7 +61,7 @@ function appendBook(books, book) {
   books.appendChild(bookLi);
   let toggleBtn = document.getElementById(`read-toggle-${book.id}`);
   toggleBtn.addEventListener("click", e => {
-    book.read = !book.read;
+    book.toggleRead();
     status = book.read ? "already read" : "not yet read";
     document.getElementById(`book-status-${book.id}`).innerText = status;
   });
