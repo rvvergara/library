@@ -59,15 +59,19 @@ function appendBook(books, book) {
   let bookLi = document.createElement("li"),
     status = book.read === 'true' ? "already read" : "not yet read";
   bookLi.setAttribute("id", `book-${book.id}`);
-  bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, <span id="book-status-${book.id}">${status}</span> <button id="read-toggle-${book.id}">Toggle</button> <button>Delete</button>`;
+  bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, <span id="book-status-${book.id}">${status}</span> <button id="read-toggle-${book.id}">Toggle</button> <button id="delete-book-${book.id}">Delete</button>`;
   books.appendChild(bookLi);
   let toggleBtn = document.getElementById(`read-toggle-${book.id}`);
   toggleBtn.addEventListener("click", e => {
     book.read = !book.read;
     status = book.read ? "already read" : "not yet read";
     document.getElementById(`book-status-${book.id}`).innerText = status;
-
   });
+  let deleteBtn = document.getElementById(`delete-book-${book.id}`);
+  deleteBtn.addEventListener("click", e => {
+    removeBook(myLibrary, book.id);
+    bookLi.parentElement.removeChild(bookLi);
+  })
 }
 
 
