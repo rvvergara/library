@@ -57,7 +57,7 @@ function render(bookArr) {
 // Appending a new book to library and to html
 function appendBook(books, book) {
   let bookLi = document.createElement("li"),
-    status = book.read ? "already read" : "not yet read"
+    status = book.read === 'true' ? "already read" : "not yet read"
   bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, ${status}  <button>Toggle</button> <button>Delete</button>`;
   books.appendChild(bookLi);
 }
