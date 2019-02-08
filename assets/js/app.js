@@ -32,13 +32,21 @@ function removeBook(booksArr, param) {
   return booksArr;
 }
 
-// Function that returns all books in the library -> Controller index
-function index(booksArr) {
-  // return a list of objects containing
-  return booksArr;
-}
 
 // Function to create/instantiate a new book
 function create(title, author, pages, read) {
   return new Book(title, author, pages, read);
 }
+
+// Function to render the library
+function render(bookArr) {
+  let books = document.getElementById("bookList");
+  bookArr.forEach(book => {
+    let bookLi = document.createElement("li"),
+      status = book.read ? "already read" : "not yet read"
+    bookLi.innerText = `${book.title}, by ${book.author}, ${book.pages} pages, ${status}`;
+    books.appendChild(bookLi);
+  });
+}
+
+window.addEventListener("load", e => render(myLibrary));
