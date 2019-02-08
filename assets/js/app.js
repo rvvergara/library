@@ -57,3 +57,15 @@ function showForm() {
 window.addEventListener("load", e => render(myLibrary));
 
 document.getElementById("addBook").addEventListener("click", e => showForm());
+
+// Function to get all the data from form
+
+function getBookInfo() {
+  let title = document.getElementById("title").value,
+    author = document.getElementById("author").value,
+    pages = document.getElementById("pages").value,
+    read = document.getElementById("read").value;
+  return [title, author, pages, read];
+}
+
+document.getElementById("addBookForm").addEventListener("submit", e => addBookToLibrary(...getBookInfo()));
