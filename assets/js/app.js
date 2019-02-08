@@ -57,9 +57,17 @@ function render(bookArr) {
 // Appending a new book to library and to html
 function appendBook(books, book) {
   let bookLi = document.createElement("li"),
-    status = book.read === 'true' ? "already read" : "not yet read"
-  bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, ${status}  <button>Toggle</button> <button>Delete</button>`;
+    status = book.read === 'true' ? "already read" : "not yet read";
+  bookLi.setAttribute("id", `book-${book.id}`);
+  bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, <span id="book-status-${book.id}">${status}</span> <button id="read-toggle-${book.id}">Toggle</button> <button>Delete</button>`;
   books.appendChild(bookLi);
+  let toggleBtn = document.getElementById(`read-toggle-${book.id}`);
+  toggleBtn.addEventListener("click", e => {
+    book.read = !book.read;
+    status = book.read ? "already read" : "not yet read";
+    document.getElementById(`book-status-${book.id}`).innerText = status;
+
+  });
 }
 
 
@@ -95,3 +103,8 @@ document.getElementById("addBookForm").addEventListener("submit", e => {
   e.preventDefault();
   submitForm();
 });
+
+// Function for change read status
+
+
+// toggleBtn.toggleAttribute("data-read");
