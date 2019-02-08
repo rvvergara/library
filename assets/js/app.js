@@ -42,12 +42,18 @@ function create(title, author, pages, read) {
 function render(bookArr) {
   let books = document.getElementById("bookList");
   bookArr.forEach(book => {
-    let bookLi = document.createElement("li"),
-      status = book.read ? "already read" : "not yet read"
-    bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, ${status}  <button>Toggle</button> <button>Delete</button>`;
-    books.appendChild(bookLi);
+    appendBook(books, book);
   });
 }
+
+// Appending a new book to library and to html
+function appendBook(books, book) {
+  let bookLi = document.createElement("li"),
+    status = book.read ? "already read" : "not yet read"
+  bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, ${status}  <button>Toggle</button> <button>Delete</button>`;
+  books.appendChild(bookLi);
+}
+
 
 // Function to show form
 function showForm() {
@@ -72,7 +78,9 @@ function getBookInfo() {
 function submitForm() {
   addBookToLibrary(...getBookInfo());
   document.getElementById("addBookForm").reset();
-  render(myLibrary);
+  let books = document.getElementById("bookList");
+  let book = myLibrary[myLibrary.length - 1];
+  appendBook(books, book);
 }
 
 document.getElementById("addBookForm").addEventListener("submit", e => {
