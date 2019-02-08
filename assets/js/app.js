@@ -49,4 +49,11 @@ function render(bookArr) {
   });
 }
 
+// Function to show form
+function showForm() {
+  document.getElementById("addBookForm").removeAttribute("class");
+}
+
 window.addEventListener("load", e => render(myLibrary));
+
+document.getElementById("addBook").addEventListener("click", e => showForm());
