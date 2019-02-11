@@ -1,25 +1,35 @@
 // Function to render the library
-function render(bookArr) {
+function render(library) {
   let books = document.getElementById("bookList");
-  bookArr.forEach(book => {
-    appendBook(bookArr, books, book);
+  library.arr.forEach(book => {
+    appendBook(library, books, book);
   });
 }
 
 // Appending a new book to library and to html
 function appendBook(library, books, book) {
-  let bookLi = document.createElement("li"),
+  let bookTr = document.createElement("tr"),
     status = book.read === 'true' ? "already read" : "not yet read";
-  bookLi.setAttribute("id", `book-${book.id}`);
-  bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, <span id="book-status-${book.id}">${status}</span> <button id="read-toggle-${book.id}">Toggle</button> <button id="delete-book-${book.id}">Delete</button>`;
-  books.appendChild(bookLi);
+  bookTr.setAttribute("id", `book-${book.id}`);
+
+  bookTr.innerHTML = `<td>${book.title}</td>
+  <td>${book.author}</td>
+  <td>${book.pages}</td>
+  <td> 
+    <span id="book-status-${book.id}">${status}</span> 
+    <button id="read-toggle-${book.id}">Toggle</button> 
+    <button id="delete-book-${book.id}">Delete</button>
+  </td>`;
+
+
+  books.appendChild(bookTr);
 
   // Add functionality to toggle button
 
   toggleStatus(document.getElementById(`read-toggle-${book.id}`), book);
 
   // Add functionality to toggle button
-  deleteBtn(document.getElementById(`delete-book-${book.id}`), library, book, bookLi);
+  deleteBtn(document.getElementById(`delete-book-${book.id}`), library, book, bookTr);
 }
 
 // Function for toggle button
@@ -33,7 +43,7 @@ function toggleStatus(btn, book) {
 
 function deleteBtn(btn, library, book, bookLi) {
   btn.addEventListener("click", e => {
-    removeBook(library, book.id);
+    library.removeBook(library.arr, book.id);
     bookLi.parentElement.removeChild(bookLi);
   });
 }
@@ -55,7 +65,7 @@ function getBookInfoFromForm() {
 // Function for submit all info get from form
 
 function submitForm(library) {
-  library.addBook(...getBookInfoFromFrom());
+  library.addBook(...getBookInfoFromForm());
   document.getElementById("addBookForm").reset();
   document.getElementById("addBookForm").setAttribute("class", "d-none");
   let books = document.getElementById("bookList");

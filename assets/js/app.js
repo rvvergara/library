@@ -3,7 +3,7 @@ const myLibrary = new Library();
 
 myLibrary.addBook("Rich Dad Poor Dad", "Robert Kiyosaki", 300, false);
 
-window.addEventListener("load", e => render(myLibrary.arr));
+window.addEventListener("load", e => render(myLibrary));
 
 document.getElementById("addBook").addEventListener("click", e => showForm());
 
