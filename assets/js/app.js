@@ -1,17 +1,11 @@
 // Library array
-const myLibrary = []
+const myLibrary = new Library();
 
 
 
-addBookToLibrary("Rich Dad Poor Dad", "Robert Kiyosaki", 300, false);
-// Adding a new book to library
-function addBookToLibrary(title, author, pages, read) {
-  // 1. Instantiate a new book
-  let book = create(...arguments);
-  // 2. Push this new book to myLibrary
-  myLibrary.push(book);
-  return myLibrary;
-}
+myLibrary.addBook("Rich Dad Poor Dad", "Robert Kiyosaki", 300, false);
+
+
 
 function removeBook(booksArr, param) {
   // Find book from array using param -> identification of a particular book and then find its index in the library
@@ -21,10 +15,7 @@ function removeBook(booksArr, param) {
 }
 
 
-// Function to create/instantiate a new book
-function create(title, author, pages, read) {
-  return new Book(title, author, pages, read);
-}
+
 
 // Function to render the library
 function render(bookArr) {
