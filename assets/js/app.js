@@ -1,25 +1,7 @@
 // Library array
 const myLibrary = []
 
-// Book Class
-class Book {
-  constructor(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    Book.count++;
-    this.id = Book.count;
-  }
-  toggleRead() {
-    this.read = !this.read;
-  }
-  static get COUNT() {
-    return Book.count;
-  }
-}
 
-Book.count = 0;
 
 addBookToLibrary("Rich Dad Poor Dad", "Robert Kiyosaki", 300, false);
 // Adding a new book to library
