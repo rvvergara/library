@@ -1,3 +1,8 @@
 .d-none {
   display: none;
 }
+
+table * {
+  border: 1px solid #000;
+  padding: 10px;
+}
