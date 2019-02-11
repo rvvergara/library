@@ -58,7 +58,8 @@ function getBookInfo() {
 function submitForm(library) {
   library.addBook(...getBookInfo());
   document.getElementById("addBookForm").reset();
+  document.getElementById("addBookForm").setAttribute("class", "d-none");
   let books = document.getElementById("bookList");
   let book = library.arr[library.arr.length - 1];
-  appendBook(books, book);
+  appendBook(library, books, book);
 }
