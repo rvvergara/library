@@ -38,7 +38,6 @@ function deleteBtn(btn, library, book, bookLi) {
   });
 }
 
-
 // Function to show form
 function showForm() {
   document.getElementById("addBookForm").removeAttribute("class");
@@ -46,7 +45,7 @@ function showForm() {
 
 // Function to get all the data from form
 
-function getBookInfo() {
+function getBookInfoFromForm() {
   let title = document.getElementById("title").value,
     author = document.getElementById("author").value,
     pages = document.getElementById("pages").value,
@@ -56,9 +55,10 @@ function getBookInfo() {
 // Function for submit all info get from form
 
 function submitForm(library) {
-  library.addBook(...getBookInfo());
+  library.addBook(...getBookInfoFromFrom());
   document.getElementById("addBookForm").reset();
+  document.getElementById("addBookForm").setAttribute("class", "d-none");
   let books = document.getElementById("bookList");
   let book = library.arr[library.arr.length - 1];
-  appendBook(books, book);
+  appendBook(library, books, book);
 }
