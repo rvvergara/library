@@ -14,17 +14,24 @@ function appendBook(books, book) {
   bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, <span id="book-status-${book.id}">${status}</span> <button id="read-toggle-${book.id}">Toggle</button> <button id="delete-book-${book.id}">Delete</button>`;
   books.appendChild(bookLi);
   let toggleBtn = document.getElementById(`read-toggle-${book.id}`);
-  toggleBtn.addEventListener("click", e => {
-    book.toggleRead();
-    status = book.read ? "already read" : "not yet read";
-    document.getElementById(`book-status-${book.id}`).innerText = status;
-  });
+  toggleStatus(toggleBtn, book);
   let deleteBtn = document.getElementById(`delete-book-${book.id}`);
   deleteBtn.addEventListener("click", e => {
     removeBook(myLibrary, book.id);
     bookLi.parentElement.removeChild(bookLi);
   })
 }
+
+// Function for toggle button
+function toggleStatus(btn, book) {
+  btn.addEventListener("click", e => {
+    book.toggleRead();
+    let status = book.read ? "already read" : "not yet read";
+    document.getElementById(`book-status-${book.id}`).innerText = status;
+  });
+}
+
+
 
 
 // Function to show form
