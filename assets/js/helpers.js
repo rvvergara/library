@@ -2,24 +2,25 @@
 function render(bookArr) {
   let books = document.getElementById("bookList");
   bookArr.forEach(book => {
-    appendBook(books, book);
+    appendBook(bookArr, books, book);
   });
 }
 
 // Appending a new book to library and to html
-function appendBook(books, book) {
+function appendBook(library, books, book) {
   let bookLi = document.createElement("li"),
     status = book.read === 'true' ? "already read" : "not yet read";
   bookLi.setAttribute("id", `book-${book.id}`);
   bookLi.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, <span id="book-status-${book.id}">${status}</span> <button id="read-toggle-${book.id}">Toggle</button> <button id="delete-book-${book.id}">Delete</button>`;
   books.appendChild(bookLi);
+
+  // Add functionality to toggle button
   let toggleBtn = document.getElementById(`read-toggle-${book.id}`);
   toggleStatus(toggleBtn, book);
-  let deleteBtn = document.getElementById(`delete-book-${book.id}`);
-  deleteBtn.addEventListener("click", e => {
-    removeBook(myLibrary, book.id);
-    bookLi.parentElement.removeChild(bookLi);
-  })
+
+  debugger;
+  // Add functionality to toggle button
+  deleteBtn(document.getElementById(`delete-book-${book.id}`), library, book, bookLi);
 }
 
 // Function for toggle button
@@ -31,7 +32,12 @@ function toggleStatus(btn, book) {
   });
 }
 
-
+function deleteBtn(btn, library, book, bookLi) {
+  btn.addEventListener("click", e => {
+    removeBook(library, book.id);
+    bookLi.parentElement.removeChild(bookLi);
+  });
+}
 
 
 // Function to show form
