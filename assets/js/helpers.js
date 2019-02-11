@@ -4,6 +4,7 @@ function render(library) {
   library.arr.forEach(book => {
     appendBook(library, books, book);
   });
+  showTableHeader(library.arr.length);
 }
 
 // Appending a new book to library and to html
@@ -30,8 +31,16 @@ function appendBook(library, books, book) {
 
   // Add functionality to toggle button
   deleteBtn(document.getElementById(`delete-book-${book.id}`), library, book, bookTr);
+
+  showTableHeader(library.arr.length);
 }
 
+// Show table header
+function showTableHeader(arrayLength) {
+  if (arrayLength > 0) {
+    document.getElementById("tableHeader").removeAttribute("class");
+  }
+}
 // Function for toggle button
 function toggleStatus(btn, book) {
   btn.addEventListener("click", e => {
