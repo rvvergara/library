@@ -1,21 +1,7 @@
 // Library array
 const myLibrary = new Library();
 
-
-
 myLibrary.addBook("Rich Dad Poor Dad", "Robert Kiyosaki", 300, false);
-
-
-
-function removeBook(booksArr, param) {
-  // Find book from array using param -> identification of a particular book and then find its index in the library
-  index = param;
-  booksArr.splice(index, 1);
-  return booksArr;
-}
-
-
-
 
 // Function to render the library
 function render(bookArr) {
@@ -51,7 +37,7 @@ function showForm() {
   document.getElementById("addBookForm").removeAttribute("class");
 }
 
-window.addEventListener("load", e => render(myLibrary));
+window.addEventListener("load", e => render(myLibrary.arr));
 
 document.getElementById("addBook").addEventListener("click", e => showForm());
 
