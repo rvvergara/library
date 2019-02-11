@@ -15,10 +15,9 @@ function appendBook(library, books, book) {
   books.appendChild(bookLi);
 
   // Add functionality to toggle button
-  let toggleBtn = document.getElementById(`read-toggle-${book.id}`);
-  toggleStatus(toggleBtn, book);
 
-  debugger;
+  toggleStatus(document.getElementById(`read-toggle-${book.id}`), book);
+
   // Add functionality to toggle button
   deleteBtn(document.getElementById(`delete-book-${book.id}`), library, book, bookLi);
 }
